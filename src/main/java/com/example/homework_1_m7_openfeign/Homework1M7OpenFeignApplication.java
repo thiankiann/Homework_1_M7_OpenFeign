@@ -1,5 +1,6 @@
 package com.example.homework_1_m7_openfeign;
 
+import com.example.homework_1_m7_openfeign.dto.GetAllSongResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ public class Homework1M7OpenFeignApplication {
 
     @EventListener(ApplicationStartedEvent.class)
     public void makeResponseToSongifyEndpoint(){
-        String response = songifyClient.fetchAllSongs();
+        GetAllSongResponseDto response = songifyClient.fetchAllSongs();
         System.out.println(response);
     }
 }
