@@ -1,6 +1,6 @@
 package com.example.homework_1_m7_openfeign;
 
-import com.example.homework_1_m7_openfeign.dto.GetAllSongsResponseDto;
+import com.example.homework_1_m7_openfeign.dto.PostSongRequestDto;
 import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,8 @@ public class Homework1M7OpenFeignApplication {
     public void makeResponseToSongifyEndpoint(){
 
         try {
+            log.info(songifyClient.fetchAllSongs());
+            songifyClient.addSong(new PostSongRequestDto("anonim", "new song"));
             log.info(songifyClient.fetchAllSongs());
         } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
