@@ -29,6 +29,8 @@ public class Homework1M7OpenFeignApplication {
             log.info(songifyClient.fetchAllSongs());
             songifyClient.addSong(new PostSongRequestDto("anonim", "new song"));
             log.info(songifyClient.fetchAllSongs());
+            songifyClient.deleteSong(5);
+            log.info(songifyClient.fetchAllSongs());
         } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
             log.error("client exception: " + feignClientException.status());
