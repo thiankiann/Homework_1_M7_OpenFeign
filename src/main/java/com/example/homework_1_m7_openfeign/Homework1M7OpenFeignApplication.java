@@ -1,6 +1,7 @@
 package com.example.homework_1_m7_openfeign;
 
 import com.example.homework_1_m7_openfeign.dto.GetAllSongsResponseDto;
+import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,9 +24,17 @@ public class Homework1M7OpenFeignApplication {
 
     @EventListener(ApplicationStartedEvent.class)
     public void makeResponseToSongifyEndpoint(){
-//      GetAllSongsResponseDto response = songifyClient.fetchAllSongs();
-//        System.out.println(response);
 
-        log.info(songifyClient.fetchAllSongs());
+        try {
+            log.info(songifyClient.fetchAllSongs());
+        } catch (FeignException.FeignClientException feignClientException) {
+            System.out.println("client exception: " + feignClientException.status());
+            log.error("client exception: " + feignClientException.status());
+        } catch (FeignException.FeignServerException feignServerException) {
+            System.out.println("server exception: " + feignServerException.status());
+        } catch (FeignException feignException) {
+            System.out.println(feignException.getMessage());
+            System.out.println(feignException.status());
+        }
     }
 }
