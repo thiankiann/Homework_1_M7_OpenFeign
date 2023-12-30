@@ -4,5 +4,5 @@ import com.example.homework_1_m7_openfeign.Song;
 
 import java.util.Map;
 
-public record GetAllSongResponseDto(Map<Integer, Song > songs) {
+public record GetAllSongsResponseDto(Map<Integer, Song > songs) {
 }
