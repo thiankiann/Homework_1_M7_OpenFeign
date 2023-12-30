@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient(value = "songify-client")
 @Service
-//@RequestMapping("/songs")
 public interface SongifyProxy {
 
     // GET http://localhost:8080/songs
