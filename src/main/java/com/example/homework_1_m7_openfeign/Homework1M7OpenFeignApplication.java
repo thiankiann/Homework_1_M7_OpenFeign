@@ -1,9 +1,11 @@
 package com.example.homework_1_m7_openfeign;
 
 import com.example.homework_1_m7_openfeign.dto.SongifyServerRequestDto;
+import com.example.homework_1_m7_openfeign.dto.SongifyServerResponseDto;
 import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -30,6 +32,7 @@ public class Homework1M7OpenFeignApplication {
     public void makeResponseToSongifyEndpoint(){
 
         try {
+            log.info(songifyClient.getSongById(1));
             log.info(songifyClient.fetchAllSongs());
             songifyClient.addSong(new SongifyServerRequestDto("anonim", "new song"));
             log.info(songifyClient.fetchAllSongs());
@@ -37,6 +40,8 @@ public class Homework1M7OpenFeignApplication {
             log.info(songifyClient.fetchAllSongs());
             songifyClient.updateSong(2, new SongifyServerRequestDto("GalANonim", "updated song"));
             log.info(songifyClient.fetchAllSongs());
+//            songifyClient.partiallyUpdateSong(3, new SongifyServerRequestDto("ANonim", ""));
+//            log.info(songifyClient.fetchAllSongs());
         } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
             log.error("client exception: " + feignClientException.status());
@@ -46,5 +51,15 @@ public class Homework1M7OpenFeignApplication {
             System.out.println(feignException.getMessage());
             System.out.println(feignException.status());
         }
+
+
     }
+//    public void partiallyUpdater (Integer id , SongifyServerRequestDto newSong){
+//        var oldSong = songifyClient.getSongById(id);
+//        Song partialyUpdatedSong;
+//        if(newSong.songName()!= null){
+//
+//        }
+
+
 }
