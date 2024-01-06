@@ -38,13 +38,12 @@ public class Homework1M7OpenFeignApplication {
             songifyClient.updateSong(2, new SongifyServerRequestDto("GalANonim", "updated song"));
             log.info(songifyClient.fetchAllSongs());
         } catch (FeignException.FeignClientException feignClientException) {
-            System.out.println("client exception: " + feignClientException.status());
             log.error("client exception: " + feignClientException.status());
         } catch (FeignException.FeignServerException feignServerException) {
-            System.out.println("server exception: " + feignServerException.status());
+            log.info("server exception: " + feignServerException.status());
         } catch (FeignException feignException) {
-            System.out.println(feignException.getMessage());
-            System.out.println(feignException.status());
+            log.info(feignException.getMessage());
+            log.info(feignException.status());
         }
     }
 }
